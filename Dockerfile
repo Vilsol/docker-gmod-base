@@ -14,6 +14,9 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     wget \
     lib32tinfo5
 
+RUN useradd -ms /bin/bash steam
+USER steam
+
 WORKDIR /home/steam/steamcmd/
 RUN ["wget", "http://media.steampowered.com/client/steamcmd_linux.tar.gz"]
 RUN ["tar", "-xvzf", "steamcmd_linux.tar.gz"]
