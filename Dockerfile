@@ -16,6 +16,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 
 RUN mkdir -p /home/steam/steamcmd/
 RUN useradd -ms /bin/bash steam
+RUN chown -R steam /home/steam
 RUN chmod -R 744 /home/steam
 
 USER steam
