@@ -14,15 +14,16 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     wget \
     lib32tinfo5
 
+RUN mkdir -p /home/steam/steamcmd/
 RUN useradd -ms /bin/bash steam
+RUN chmod -R 744 /home/steam
+
 USER steam
 
 WORKDIR /home/steam/steamcmd/
 RUN ["wget", "http://media.steampowered.com/client/steamcmd_linux.tar.gz"]
 RUN ["tar", "-xvzf", "steamcmd_linux.tar.gz"]
 RUN ./steamcmd.sh +login anonymous +quit
-
-WORKDIR /
 
 ADD update.sh update.sh
 RUN ["bash", "update.sh"]
@@ -33,7 +34,7 @@ ENV MAP="gm_flatgrass"
 ENV MAX_PLAYERS="12"
 ENV GAMEMODE="sandbox"
 
-WORKDIR /home/server/gmod/
+WORKDIR /home/steam/gmod/
 
 ADD start.sh start.sh
 
