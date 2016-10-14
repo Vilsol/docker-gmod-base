@@ -13,9 +13,9 @@ update_server() {
 		exit 1
 	fi
 
-	./home/steam/steamcmd/steamcmd.sh +login anonymous +force_install_dir "$DIR" +app_update $APP_ID validate +quit
+	/home/steam/steamcmd/steamcmd.sh +login anonymous +force_install_dir "$DIR" +app_update $APP_ID validate +quit
 }
 
-update_server 4020 "/home/server/gmod/"
+update_server 4020 "/home/steam/gmod/"
 
 exit 0
