@@ -28,7 +28,7 @@ They can be configured from the run command: `docker run -it -d -P -e "MAP=gm_co
 An advanced option is to specify your own startup arguments.
 
 For example, if you wish to add a workshop list to your server, you would use the following run command:
-`docker run -it -d -P -e "MAP=gm_construct" vilsol/gmod-base ./srcds_run -game garrysmod +maxplayers 12 +host_workshop_collection 157384458 +gamemode zombiesurvival +map zs_cleanoffice_v2`
+`docker run -it -d -P vilsol/gmod-base ./srcds_run -game garrysmod +maxplayers 12 +host_workshop_collection 157384458 +gamemode zombiesurvival +map zs_cleanoffice_v2`
 
 ### docker-compose
 
