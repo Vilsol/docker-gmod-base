@@ -34,7 +34,7 @@ For example, if you wish to add a workshop list to your server, you would use th
 
 The third option is to use a `docker-compose.yml` file to configure your servers. This is the recommended method for multiple server owners. Here is an example compose file with a sandbox, zombie survival and TTT servers:
 
-```
+```YAML
 version: '2'
 services:
   sandbox:
