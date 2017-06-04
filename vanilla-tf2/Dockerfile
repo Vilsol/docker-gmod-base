@@ -26,8 +26,11 @@ RUN ["wget", "http://media.steampowered.com/client/steamcmd_linux.tar.gz"]
 RUN ["tar", "-xvzf", "steamcmd_linux.tar.gz"]
 RUN ./steamcmd.sh +login anonymous +quit
 
-ADD update.sh update.sh
-RUN ["bash", "update.sh"]
+COPY update.sh update.sh
+RUN ["/bin/bash", "update.sh", "4020", "/home/steam/gmod/"]
+RUN ["/bin/bash", "update.sh", "232250", "/home/steam/content/tf2/"]
+
+VOLUME /home/steam
 
 EXPOSE 27015
 
@@ -37,9 +40,10 @@ ENV GAMEMODE="sandbox"
 
 WORKDIR /home/steam/gmod/
 
-ADD start.sh start.sh
-
 RUN mkdir -p ~/.steam/sdk32/
 RUN ln -s /home/steam/steamcmd/linux32/steamclient.so ~/.steam/sdk32/steamclient.so
 
-CMD ["bash", "start.sh"]
+COPY mount.cfg garrysmod/cfg/mount.cfg
+
+ENTRYPOINT ["/bin/sh", "-c"]
+CMD ["./srcds_run -game garrysmod +maxplayers $MAX_PLAYERS +map $MAP +sv_gamemode $GAMEMODE"]
